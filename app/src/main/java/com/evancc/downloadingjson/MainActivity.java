@@ -61,11 +61,14 @@ public class MainActivity extends AppCompatActivity {
             String weatherInfo = weatherObject.getString("list");
             Log.i("Weather Info", weatherInfo);
             JSONArray weatherArray = new JSONArray(weatherInfo);
-            weatherInfo = weatherArray.get(1).toString();
-            Log.i("Weather Info", weatherInfo);
-            //for (int cnt = 0; cnt < weatherArray.length(); cnt++) {
-            //    Log.i("Weather Info", weatherArray.get(cnt).toString());
-            //}
+            JSONObject currentWeather = weatherArray.getJSONObject(1);
+            weatherInfo = currentWeather.getString("weather");
+            weatherArray = new JSONArray(weatherInfo);
+            currentWeather = weatherArray.getJSONObject(0);
+
+            Log.i("Main", currentWeather.getString("main"));
+            Log.i("Description", currentWeather.getString("description"));
+
 
 
         } catch (Exception e) {
